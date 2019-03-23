@@ -94,7 +94,6 @@ func getDistance(r_q, c_q, r, c, dir int32) int32 {
 	case 0, 1, 3, 4, 5, 7:
 		return abs(c-c_q) - 1
 
-	//
 	case 2, 6:
 		return abs(r-r_q) - 1
 	}
@@ -140,20 +139,14 @@ func queensAttack(n int32, k int32, r_q int32, c_q int32, obstacles [][]int32) i
 	for i := 0; i < 8; i++ {
 		minDistances[i] = getDistanceToEdge(n, r_q, c_q, i)
 	}
-	fmt.Println(minDistances)
 
-	fmt.Println("Queen at", r_q, c_q)
 	for _, obstacle := range obstacles {
 		if !isInPath(r_q, c_q, obstacle[0], obstacle[1]) {
 			continue
 		}
-		fmt.Println("Obstacle", obstacle)
 
 		dir := getDirection(r_q, c_q, obstacle[0], obstacle[1])
-		fmt.Println("Direction", dir)
 		dis := getDistance(r_q, c_q, obstacle[0], obstacle[1], dir)
-		fmt.Println("Distance", dis)
-
 		minDistances[dir] = min(minDistances[dir], dis)
 	}
 
@@ -161,7 +154,6 @@ func queensAttack(n int32, k int32, r_q int32, c_q int32, obstacles [][]int32) i
 	for _, dist := range minDistances {
 		ans += dist
 	}
-	fmt.Println(minDistances)
 
 	return ans
 }
